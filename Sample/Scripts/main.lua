@@ -1,3 +1,3 @@
 ﻿print("Hello")
-wait(2)
-print("Hello")
+wait(5)
+print("Hello there")

@@ -13,9 +13,7 @@ using SFML.Window;
 LuaAPI.LoadInitScript();
 
 var clock = new Clock();
-
-Console.WriteLine(Point.Zero);
-
+GameWindow.Init(800,600,"ddd");
 while (GameWindow.IsOpen)
 {
     var dt = clock.Restart();

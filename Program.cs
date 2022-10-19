@@ -10,7 +10,7 @@ using SFML.Window;
 // Game.Path = args[1];
 
 
-LuaAPI.LoadInitScript();
+LuaScript.Init();
 
 var clock = new Clock();
 GameWindow.Init(800,600,"ddd");

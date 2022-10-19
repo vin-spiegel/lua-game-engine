@@ -10,8 +10,16 @@
 
 print(window)
 
+--local window = window(700, 600, "title")
+--
+--window.init = function()
+--    
+--end
+
 window.Init(800,600,"title")
 
-print(window.update)
+window.Update = function(dt)
+    --print(dt)
+end
 
 --window.size = point(-1,-1)

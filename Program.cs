@@ -1,4 +1,5 @@
 ﻿using GameEngineDemo2.Core;
+using MoonSharp.Interpreter;
 using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
@@ -7,6 +8,8 @@ using SFML.Window;
 //     return;
 
 // Game.Path = args[1];
+
+
 LuaAPI.LoadInitScript();
 
 var clock = new Clock();

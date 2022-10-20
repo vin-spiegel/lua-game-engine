@@ -59,16 +59,15 @@ public static class LuaAwaitTask
     }
 }
 
-public static class LuaAPI
+public static class LuaScript
 {
     private static readonly string ScriptDirectory = Path.GetFullPath(@"..\..\..\Sample\Scripts\");
     private static Script _script = new Script();
     
-    public static void LoadInitScript()
+    public static void Init()
     {
-        Script.GlobalOptions.CustomConverters.SetClrToScriptCustomConversion<Task<DynValue>>(
-            task => LuaAwaitTask.Await(task)
-        );
+        Script.GlobalOptions.CustomConverters
+            .SetClrToScriptCustomConversion<Task<DynValue>>(LuaAwaitTask.Await);
         
         RegisterType();
         LoadApiFunction();

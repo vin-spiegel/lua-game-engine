@@ -1,1 +1,3 @@
-﻿wait(2)
+﻿print("Hello")
+wait(3)
+print("Hello")

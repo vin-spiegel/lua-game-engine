@@ -10,11 +10,11 @@ using SFML.Window;
 // Game.Path = args[1];
 
 
-LuaAPI.LoadInitScript();
+LuaScript.Init();
 
 var clock = new Clock();
 
-Console.WriteLine(Point.Zero);
+GameWindow.Init(500,500,"Sample");
 
 while (GameWindow.IsOpen)
 {

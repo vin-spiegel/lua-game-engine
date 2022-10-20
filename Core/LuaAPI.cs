@@ -3,12 +3,59 @@
 namespace GameEngineDemo2.Core;
 
 [MoonSharpUserData]
-public class LuaAwait
+public class LuaTask
 {
     public Task<DynValue> Task;
-    public LuaAwait(Task<DynValue> task)
+    public LuaTask(Task<DynValue> task)
     {
         Task = task;
+    }
+}
+
+public static class LuaAwaitTask
+{
+    public static DynValue Wait(double t)
+    {
+        return _Await(Task.Delay((int)(t * 1000f)));
+    }
+    
+    public static async Task<DynValue> CallAsync(this DynValue func, params object[] args)
+    {
+        try
+        {
+            var coroutine = func.Function.OwnerScript.CreateCoroutine(func);
+            var result = coroutine.Coroutine.Resume(args);
+            
+            while (result.Type == DataType.UserData && result.UserData.Object is LuaTask wait)
+            {
+                var ret = await wait.Task;
+                result = coroutine.Coroutine.Resume(ret);
+            }
+            return result;
+        }
+        catch (InterpreterException ex)
+        {
+            Console.WriteLine(ex.DecoratedMessage);
+            throw;
+        }
+    }
+    
+    public static DynValue Await(Task<DynValue> task)
+    {
+        return DynValue.NewYieldReq(new[]
+        {
+            UserData.Create(new LuaTask(task))
+        });
+    }
+
+    private static DynValue _Await(Task task)
+    {
+        async Task<DynValue> WaitTask()
+        {
+            await task;
+            return DynValue.Void;
+        }
+        return Await(WaitTask());
     }
 }
 
@@ -20,52 +67,27 @@ public static class LuaAPI
     public static void LoadInitScript()
     {
         Script.GlobalOptions.CustomConverters.SetClrToScriptCustomConversion<Task<DynValue>>(
-            task => Await(task)
+            task => LuaAwaitTask.Await(task)
         );
+        
         RegisterType();
         LoadApiFunction();
-        _script.DoFile(ScriptDirectory + "main.lua");
+
+        var file= _script.LoadFile(ScriptDirectory + "main.lua");
+        file?.CallAsync();
     }
     
     private static void RegisterType()
     {
         UserData.RegisterType<GameWindow>();
-        UserData.RegisterType<LuaAwait>();
+        UserData.RegisterType<LuaTask>();
         UserData.RegisterType<Point>();
     }
-    
-    static void LoadApiFunction()
+
+    private static void LoadApiFunction()
     {
-        _script.Globals["wait"] = (Func<double, DynValue>)Wait;
+        _script.Globals["wait"] = (Func<double, DynValue>)LuaAwaitTask.Wait;
         _script.Globals["window"] = typeof(GameWindow);
         _script.Globals["point"] = (Func<float,float,Point>)Point.New;
-    }
-    public static DynValue Await(Task<DynValue> task) => 
-        DynValue.NewYieldReq(new[] { UserData.Create(new LuaAwait(task)) });
-
-    public static async Task<DynValue> CallAsync(DynValue func, params object[] args)
-    {
-        try
-        {
-            var coroutine = func.Function.OwnerScript.CreateCoroutine(func);
-            var result = coroutine.Coroutine.Resume(args);
-            
-            while (result.Type == DataType.UserData && result.UserData.Object is LuaAwait wait)
-            {
-                var ret = await wait.Task;
-                result = coroutine.Coroutine.Resume(ret);
-            }
-            return result;
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex);
-            throw;
-        }
-    }
-    
-    private static DynValue Wait(double t)
-    {
-        return Await(Task.Delay((int)(t * 1000.0f)) as Task<DynValue>);
     }
 }

@@ -12,14 +12,24 @@ using SFML.Window;
 LuaScript.Init();
 
 var clock = new Clock();
-GameWindow.Init(800,600,"ddd");
+
+GameWindow.load?.Call();
+
+// GameWindow.Init(GameWindow.height,GameWindow.width, GameWindow.title);
+GameWindow.Init(800,480,"Test Game");
+
 while (GameWindow.IsOpen)
 {
+    // update
     var dt = clock.Restart();
-    GameWindow.Update?.Call(dt.AsSeconds());
+    GameWindow.update?.Call(dt.AsSeconds());
     
+    // handle events
     GameWindow.HandleEvents();
     GameWindow.Clear();
     
+    // draw
+    
+    // display
     GameWindow.Display();
 }

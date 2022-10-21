@@ -3,6 +3,7 @@ using MoonSharp.Interpreter;
 using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
+using Window = GameEngineDemo2.Core.Window;
 
 // if (args.Length == 0)
 //     return;
@@ -13,23 +14,23 @@ LuaScript.Init();
 
 var clock = new Clock();
 
-GameWindow.load?.Call();
+Window.load?.Call();
 
 // GameWindow.Init(GameWindow.height,GameWindow.width, GameWindow.title);
-GameWindow.Init(800,480,"Test Game");
+Window.Init(800,480,"Test Game");
 
-while (GameWindow.IsOpen)
+while (Window.IsOpen)
 {
     // update
     var dt = clock.Restart();
-    GameWindow.update?.Call(dt.AsSeconds());
+    Window.update?.Call(dt.AsSeconds());
     
     // handle events
-    GameWindow.HandleEvents();
-    GameWindow.Clear();
+    Window.HandleEvents();
+    Window.Clear();
     
     // draw
     
     // display
-    GameWindow.Display();
+    Window.Display();
 }

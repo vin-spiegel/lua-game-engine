@@ -9,7 +9,7 @@ using SFML.Window;
 namespace GameEngineDemo2.Core;
 
 [MoonSharpUserData]
-public class GameWindow 
+public class Window 
 {
     private static RenderWindow? _window;
     private static string _title = "My Game";
@@ -51,7 +51,7 @@ public class GameWindow
         set => _window!.Size = new Vector2u(width, value);
     }
     
-    public static Point size
+    public static Vector size
     {
         get => _window!.Size;
         set => _window!.Size = value;

@@ -4,15 +4,15 @@
     end
 }
 print("Start Window")
-wait(4)
+wait(2)
 
 --[[ Window Cycle ]]
-window.load = function()
-    print("loaded window")
-end
-window.update = function(dt)
-    --print(dt)
-end
+--window.load = function()
+--    print("loaded window")
+--end
+--window.update = function(dt)
+--    --print(dt)
+--end
 --]]
 
 
@@ -25,3 +25,5 @@ debug.print(a / b)
 debug.print(a == b)
 debug.print(point.distance(a, b))
 --]]
+
+--[[Closure Test]]

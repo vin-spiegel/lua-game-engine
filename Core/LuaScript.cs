@@ -5,11 +5,10 @@ using Task = GameEngineDemo2.Core.Lua.Task;
 
 namespace GameEngineDemo2.Core;
 
-[SuppressMessage("ReSharper", "FieldCanBeMadeReadOnly.Local")]
 public static class LuaScript
 {
     private static readonly string ScriptDirectory = Path.GetFullPath(@"..\..\..\Sample\Scripts\");
-    private static Script _script = new Script();
+    private static readonly Script Script = new Script();
 
     private static void SetCustomOptions()
     {
@@ -26,22 +25,24 @@ public static class LuaScript
         RegisterType();
         LoadApiFunction();
         
-        var res = _script.LoadFile(ScriptDirectory + "main.lua");
+        var res = Script.LoadFile(ScriptDirectory + "main.lua");
         res?.CallAsync();
     }
     
     private static void RegisterType()
     {
-        UserData.RegisterType<GameWindow>();
+        UserData.RegisterType<Window>();
         UserData.RegisterType<Task>();
-        UserData.RegisterType<Point>();
+        UserData.RegisterType<Vector>();
         UserData.RegisterType<Wait>();
+        UserData.RegisterType<Rect>();
     }
 
     private static void LoadApiFunction()
     {
-        _script.Globals["wait"] = typeof(Wait);
-        _script.Globals["window"] = typeof(GameWindow);
-        _script.Globals["point"] = typeof(Point);
+        Script.Globals["wait"] = typeof(Wait);
+        Script.Globals["window"] = typeof(Window);
+        Script.Globals["point"] = typeof(Vector);
+        Script.Globals["rect"] = typeof(Rect);
     }
 }

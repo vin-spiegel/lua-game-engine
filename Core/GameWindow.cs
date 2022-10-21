@@ -3,6 +3,8 @@ using SFML.Graphics;
 using SFML.Graphics.Glsl;
 using SFML.System;
 using SFML.Window;
+// ReSharper disable All
+#pragma warning disable CS8618
 
 namespace GameEngineDemo2.Core;
 
@@ -10,13 +12,10 @@ namespace GameEngineDemo2.Core;
 public class GameWindow 
 {
     private static RenderWindow? _window;
+    private static string _title = "My Game";
 
-    public static bool IsClosed => _window is { IsOpen: true };
+    #region Ctor
 
-    public static bool IsOpen => _window is { IsOpen: true };
-    
-    public static Closure Update { get; set; }
-    
     public static void Init(uint width, uint height, string title)
     {
         _window = new RenderWindow(new VideoMode(width, height), title);
@@ -26,15 +25,65 @@ public class GameWindow
         };
         _window.SetVerticalSyncEnabled(true);
     }
+
+    #endregion
     
-    // ReSharper disable once InconsistentNaming
+    
+    #region Cycle
+    
+    public static Closure load { get; set; }
+    public static Closure update { get; set; }
+
+    #endregion
+
+    
+    #region Props
+
+    public static uint width
+    {
+        get => _window!.Size.X;
+        set => _window!.Size = new Vector2u(value, height);
+    }
+    
+    public static uint height
+    {
+        get => _window!.Size.X;
+        set => _window!.Size = new Vector2u(width, value);
+    }
+    
     public static Point size
     {
         get => _window!.Size;
         set => _window!.Size = value;
     }
 
-    public static void Close()
+    public static string title
+    {
+        get => _title;
+        set
+        {
+            _title = value;
+            _window!.SetTitle(value);
+        }
+    }
+
+    #endregion
+
+
+    #region Hidden Props
+
+    [MoonSharpHidden]
+    public static bool IsClosed => _window is { IsOpen: true };
+
+    [MoonSharpHidden]
+    public static bool IsOpen => _window is { IsOpen: true };
+
+    #endregion
+
+
+    #region Methods
+
+    public static void close()
     {
         _window?.Close();
     }
@@ -63,4 +112,7 @@ public class GameWindow
     {
         // window.Draw();
     }
+
+    #endregion
+    
 }

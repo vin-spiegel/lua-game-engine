@@ -1,28 +1,44 @@
+using System.Data;
 using System.Diagnostics.CodeAnalysis;
 using MoonSharp.Interpreter;
 using SFML.Graphics.Glsl;
 using SFML.System;
+// ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable InconsistentNaming
+#pragma warning disable CS0660, CS0661
 
 namespace GameEngineDemo2.Core;
 
 [MoonSharpUserData]
-[SuppressMessage("ReSharper", "InconsistentNaming")]
-[SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
-[SuppressMessage("ReSharper", "CompareOfFloatsByEqualityOperator")]
-public struct Point
+public class Point
 {
     #region Ctor
 
     /// <summary xml:lang="en">
     /// Make Vector2 Struct
     /// </summary>
-    public static Point New(float x, float y) => new Point(x, y);
-
-    [MoonSharpHidden]
-    private Point(float x, float y)
+    public Point(float x, float y)
     {
         this.x = x;
         this.y = y;
+    }
+
+    #endregion
+    
+    #region MetaMethods
+
+    /// <exclude/>
+    [MoonSharpUserDataMetamethod("__call")]
+    public static Point __call(object self, float x, float y)
+    {
+        return new Point(x, y);
+    }
+    
+    /// <exclude/>
+    [MoonSharpUserDataMetamethod("__tostring")]
+    public static string __tostring(Point self)
+    {
+        return $"{self!.x}\t{self.y}";
     }
 
     #endregion
@@ -31,7 +47,6 @@ public struct Point
     #region Props
     
     public float x { get; set; }
-    
     public float y { get; set; }
     
     #endregion
@@ -47,6 +62,7 @@ public struct Point
     
     #endregion
 
+    
     #region Static Methods
 
     /// <summary>
@@ -75,18 +91,15 @@ public struct Point
     
     #endregion
 
-
-    #region Implicit Operator
+    
+    #region Caster
 
     [MoonSharpHidden]
     public static implicit operator Point(Vector2u vec) => new Point(vec.X, vec.Y);
-
     [MoonSharpHidden]
     public static implicit operator Vector2u(Point point) => new Vector2u((uint)point.x, (uint)point.y);
-
     [MoonSharpHidden]
     public static implicit operator Point(Vec2 vec) => new Point(vec.X, vec.Y);
-
     [MoonSharpHidden]
     public static implicit operator Vec2(Point point) => new Vec2(point.x, point.y);
 

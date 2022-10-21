@@ -9,7 +9,6 @@ using SFML.Window;
 
 // Game.Path = args[1];
 
-
 LuaScript.Init();
 
 var clock = new Clock();

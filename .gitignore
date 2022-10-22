@@ -10,5 +10,6 @@ riderModule.iml
 /_ReSharper.Caches/
 
 # sample games
+Sample/
 Sample/*.*
 Sample/Scripts/*.*

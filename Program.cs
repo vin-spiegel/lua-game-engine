@@ -13,7 +13,6 @@ var clock = new Clock();
 
 Window.load?.Call();
 
-// GameWindow.Init(GameWindow.height,GameWindow.width, GameWindow.title);
 Window.Init(800,480,"Test Game");
 
 while (Window.IsOpen)

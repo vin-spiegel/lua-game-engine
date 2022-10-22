@@ -4,6 +4,9 @@ namespace GameEngineDemo2.Core.Lua;
 
 public static class ClosureExtensions
 {
+    /// <summary>
+    /// Call Script as Closure Asynchronous
+    /// </summary>
     public static async Task<DynValue> CallAsync(this DynValue func, params object[] args)
     {
         try
@@ -13,7 +16,7 @@ public static class ClosureExtensions
             
             while (result.Type == DataType.UserData && result.UserData.Object is Task wait)
             {
-                var ret = await wait.task;
+                var ret = await wait.luaTask;
                 result = coroutine.Coroutine.Resume(ret);
             }
             return result;

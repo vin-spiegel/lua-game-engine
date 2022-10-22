@@ -13,7 +13,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Core\Premitive" />
       <Folder Include="Sample\Fonts" />
     </ItemGroup>
 

@@ -1,12 +1,12 @@
-﻿using MoonSharp.Interpreter;
+﻿using GameEngineDemo2.Core.System;
+using MoonSharp.Interpreter;
 using SFML.Graphics;
-using SFML.Graphics.Glsl;
 using SFML.System;
 using SFML.Window;
 // ReSharper disable All
 #pragma warning disable CS8618
 
-namespace GameEngineDemo2.Core;
+namespace GameEngineDemo2.Core.Graphics;
 
 [MoonSharpUserData]
 public class Window 

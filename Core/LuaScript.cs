@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using GameEngineDemo2.Core.Graphics;
+﻿using GameEngineDemo2.Core.Graphics;
 using GameEngineDemo2.Core.Lua;
 using GameEngineDemo2.Core.System;
 using MoonSharp.Interpreter;

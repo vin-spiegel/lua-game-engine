@@ -36,7 +36,8 @@ public struct Color
             this.a = (byte)color;
         }
     }
-
+    
+    
     #endregion
     
     
@@ -54,6 +55,13 @@ public struct Color
     public static Color __call(Color self, byte r, byte g, byte b)
     {
         return new Color(r, g, b);
+    }
+    
+    /// <exclude/>
+    [MoonSharpUserDataMetamethod("__call")]
+    public static Color __call(Color self, uint color)
+    {
+        return new Color(color);
     }
 
     /// <exclude/>
@@ -108,8 +116,28 @@ public struct Color
     #endregion
 
     
-    #region Private Methods
+    #region Methods
 
+    /// <summary>
+    /// Access the r, g, b,a components using [1], [2], [3], [4] respectively.
+    /// </summary>
+    /// <param name="i">color index</param>
+    public byte this[int i]
+    {
+        get
+        {
+            return i switch
+            {
+                1 => r,
+                2 => g,
+                3 => b,
+                4 => a,
+                _ => 0
+            };
+        }
+    } 
+
+    
     private bool Equals(Color other) => ( r == other.r ) && ( g == other.g ) && ( b == other.b ) && ( a == other.a );
 
     #endregion

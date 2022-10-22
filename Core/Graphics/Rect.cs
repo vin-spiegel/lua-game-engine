@@ -5,6 +5,7 @@
 
 namespace GameEngineDemo2.Core.Graphics;
 
+[MoonSharpUserData]
 public struct Rect
 {
     public float x { get; set; }

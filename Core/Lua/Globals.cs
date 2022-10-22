@@ -7,10 +7,12 @@ namespace GameEngineDemo2.Core.Lua;
 /// These are not packaged by default with Lua.
 /// </summary>
 [MoonSharpUserData]
-public static class Functions
+public static class Globals
 {
     public static string? Typeof(object obj)
     {
         return obj.ToString();
     }
+    
+    
 }

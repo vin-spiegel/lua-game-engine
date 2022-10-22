@@ -55,9 +55,9 @@ public static class LuaScript
 
     private static void LoadApiFunction()
     {
-        // lua core module
+        // lua global functions
         script.Globals["wait"] = typeof(Wait);
-        script.Globals["typeof"] = (Func<object, string?>)Functions.Typeof;
+        script.Globals["typeof"] = (Func<object, string?>)Globals.Typeof;
         
         // core module
         script.Globals["window"] = typeof(Window);

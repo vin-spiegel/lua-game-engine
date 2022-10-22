@@ -46,7 +46,7 @@ public static class LuaScript
         UserData.RegisterType<Task>();
         UserData.RegisterType<Wait>();
         
-        // core module
+        // core game module
         UserData.RegisterType<Window>();
         UserData.RegisterType<Vector>();
         UserData.RegisterType<Rect>();
@@ -57,6 +57,7 @@ public static class LuaScript
     {
         // lua core module
         script.Globals["wait"] = typeof(Wait);
+        script.Globals["typeof"] = (Func<object, string?>)Functions.Typeof;
         
         // core module
         script.Globals["window"] = typeof(Window);

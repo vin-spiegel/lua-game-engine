@@ -21,3 +21,6 @@ print(color.black.g)
 print(color.black.b)
 print(color.black.a)
 print(color.black[1])
+
+print(typeof(point))
+print(typeof(a))

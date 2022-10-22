@@ -1,5 +1,10 @@
 ﻿using GameEngineDemo2.Core;
+using GameEngineDemo2.Core.IO;
+using GameEngineDemo2.Core.Serialization;
+using SFML.Graphics;
 using SFML.System;
+using Color = GameEngineDemo2.Core.Graphics.Color;
+using File = GameEngineDemo2.Core.IO.File;
 using Window = GameEngineDemo2.Core.Graphics.Window;
 
 // if (args.Length == 0)

@@ -7,7 +7,7 @@ using SFML.System;
 // ReSharper disable InconsistentNaming
 #pragma warning disable CS0660, CS0661
 
-namespace GameEngineDemo2.Core;
+namespace GameEngineDemo2.Core.System;
 
 [MoonSharpUserData]
 public class Vector

@@ -8,7 +8,9 @@
 namespace GameEngineDemo2.Core.Graphics;
 
 /// <summary>
-/// 
+/// Representation of RGBA colors.
+/// Each color component is a uint value with a range from 0 to 255.
+/// Components (r,g,b) define a color in RGB color space.
 /// </summary>
 public struct Color
 {

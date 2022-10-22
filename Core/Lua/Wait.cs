@@ -2,18 +2,28 @@
 
 namespace GameEngineDemo2.Core.Lua;
 
+/// <summary>
+/// Yields the current thread until the specified amount of time in seconds have elapsed, with throttling.
+/// </summary>
 public class Wait
 {
     /// <exclude/>
     [MoonSharpUserDataMetamethod("__call")]
-    public static DynValue __call(object self, double t)
+    public static DynValue __call(object self)
+    {
+        return Execute(0);
+    }
+    
+    /// <exclude/>
+    [MoonSharpUserDataMetamethod("__call")]
+    public static DynValue __call(Wait self, double t)
     {
         return Execute(t);
     }
     
     private static DynValue Execute(double t)
     {
-        return Execute(System.Threading.Tasks.Task.Delay((int)(t * 1000f)));
+        return Execute(global::System.Threading.Tasks.Task.Delay((int)(t * 1000f)));
     }
     
     [MoonSharpHidden]
@@ -25,7 +35,7 @@ public class Wait
         });
     }
 
-    private static DynValue Execute(System.Threading.Tasks.Task task)
+    private static DynValue Execute(global::System.Threading.Tasks.Task task)
     {
         async Task<DynValue> WaitTask()
         {

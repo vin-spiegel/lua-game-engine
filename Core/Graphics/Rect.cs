@@ -1,11 +1,10 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using MoonSharp.Interpreter;
+﻿using MoonSharp.Interpreter;
 // ReSharper disable UnusedAutoPropertyAccessor.Global
+// ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable InconsistentNaming
 
-namespace GameEngineDemo2.Core;
+namespace GameEngineDemo2.Core.Graphics;
 
-[SuppressMessage("ReSharper", "InconsistentNaming")]
-[SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
 public struct Rect
 {
     public float x { get; set; }

@@ -12,6 +12,7 @@ namespace GameEngineDemo2.Core.Graphics;
 /// Each color component is a uint value with a range from 0 to 255.
 /// Components (r,g,b) define a color in RGB color space.
 /// </summary>
+[MoonSharpUserData]
 public struct Color
 {
     #region Ctor

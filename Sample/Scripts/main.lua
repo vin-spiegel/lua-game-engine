@@ -6,16 +6,6 @@
 print("Start Window")
 wait(2)
 
---[[ Window Cycle ]]
---window.load = function()
---    print("loaded window")
---end
---window.update = function(dt)
---    --print(dt)
---end
---]]
-
-
 --[[ Point Struct ]]
 local a, b = point(1,1), point(2,2)
 debug.print(a + b)
@@ -23,7 +13,10 @@ debug.print(a - b)
 debug.print(a * b)
 debug.print(a / b)
 debug.print(a == b)
-debug.print(point.distance(a, b))
 --]]
 
---[[Closure Test]]
+--[[ Color Struct ]]
+print(color.black.r)
+print(color.black.g)
+print(color.black.b)
+print(color.black.a)

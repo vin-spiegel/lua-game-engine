@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using GameEngineDemo2.Core.Graphics;
 using GameEngineDemo2.Core.Lua;
 using MoonSharp.Interpreter;
 using Task = GameEngineDemo2.Core.Lua.Task;
@@ -31,11 +32,13 @@ public static class LuaScript
     
     private static void RegisterType()
     {
+        //Core Module
         UserData.RegisterType<Window>();
         UserData.RegisterType<Task>();
         UserData.RegisterType<Vector>();
         UserData.RegisterType<Wait>();
         UserData.RegisterType<Rect>();
+        UserData.RegisterType<Color>();
     }
 
     private static void LoadApiFunction()
@@ -44,5 +47,6 @@ public static class LuaScript
         Script.Globals["window"] = typeof(Window);
         Script.Globals["point"] = typeof(Vector);
         Script.Globals["rect"] = typeof(Rect);
+        Script.Globals["color"] = typeof(Color);
     }
 }

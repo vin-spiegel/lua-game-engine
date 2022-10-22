@@ -1,5 +1,3 @@
-using System.Data;
-using System.Diagnostics.CodeAnalysis;
 using MoonSharp.Interpreter;
 using SFML.Graphics.Glsl;
 using SFML.System;

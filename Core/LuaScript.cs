@@ -29,17 +29,17 @@ public static class LuaScript
             @"C:/Projects/lua-game-engine/Sample/Scripts/?.lua" 
         };
     }
-
+    
     public static void Init()
     {
         SetCustomOptions();
         RegisterType();
-        LoadApiFunction();
+        RegisterFunctions();
         
         var res = script.LoadFile(ScriptDirectory + "main.lua");
         res?.CallAsync();
     }
-    
+
     private static void RegisterType()
     {
         // lua core module
@@ -53,10 +53,10 @@ public static class LuaScript
         UserData.RegisterType<Color>();
     }
 
-    private static void LoadApiFunction()
+    private static void RegisterFunctions()
     {
         // lua global functions
-        script.Globals["wait"] = typeof(Wait);
+        script.Globals["wait"] = (Func<double, DynValue>)Globals.Wait;
         script.Globals["typeof"] = (Func<object, string?>)Globals.Typeof;
         
         // core module

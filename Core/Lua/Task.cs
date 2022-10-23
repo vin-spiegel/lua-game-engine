@@ -6,7 +6,6 @@ namespace GameEngineDemo2.Core.Lua;
 /// <summary>
 /// Special Type for use `Lua` wait function
 /// </summary>
-[MoonSharpUserData]
 public class Task
 {
     [MoonSharpHidden]

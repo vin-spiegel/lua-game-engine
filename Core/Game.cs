@@ -44,7 +44,7 @@ public class Game
         set => _window!.Size = new Vector2u(width, value);
     }
     
-    public static Vector size
+    public static Vector2 size
     {
         get => _window!.Size;
         set => _window!.Size = value;

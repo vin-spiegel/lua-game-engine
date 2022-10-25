@@ -53,7 +53,7 @@ public static class LuaScript
         
         // graphics
         script.Globals["window"] = typeof(Game);
-        script.Globals["point"] = typeof(Vector);
+        script.Globals["point"] = typeof(Vector2);
         script.Globals["rect"] = typeof(Rect);
         script.Globals["color"] = typeof(Color);
     }

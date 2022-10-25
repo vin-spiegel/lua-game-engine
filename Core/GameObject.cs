@@ -3,6 +3,7 @@
 using GameEngineDemo2.Core.System;
 using MoonSharp.Interpreter;
 // ReSharper disable All
+#pragma warning disable CS0649
 #pragma warning disable CS8618
 
 namespace GameEngineDemo2.Core;
@@ -12,16 +13,16 @@ namespace GameEngineDemo2.Core;
 /// Other terms for entity are actor, or game object.
 /// </summary>
 [MoonSharpUserData]
-public class Entity
+public class GameObject
 {
     #region Ctor
 
-    private Entity(string name) : this()
+    private GameObject(string name) : this()
     {
         this.name = name;
     }
 
-    private Entity()
+    private GameObject()
     {
         Game.Add(this);
     }
@@ -29,9 +30,9 @@ public class Entity
     #endregion
     
     [MoonSharpUserDataMetamethod("__call")]
-    public static Entity __call(object self)
+    public static GameObject __call(object self)
     {
-        return new Entity();
+        return new GameObject();
     }
 
     #region Props
@@ -40,11 +41,9 @@ public class Entity
     
     public EventPublisher update = new EventPublisher();
 
-    public Vector2 position { get; set; }
+    public string tag { get; set; }
     
     public string name { get; set; }
-
-    public string tag { get; set; }
 
     #endregion
 }

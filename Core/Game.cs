@@ -13,7 +13,7 @@ public class Game
 {
     private static RenderWindow? _window;
     private static string _title = "My Game";
-    private static HashSet<Entity> _entities = new HashSet<Entity>();
+    private static HashSet<GameObject> _entities = new HashSet<GameObject>();
     
     #region Ctor
 
@@ -27,45 +27,6 @@ public class Game
         _window.SetVerticalSyncEnabled(true);
     }
 
-    #endregion
-
-    
-    #region Props
-
-    public static uint width
-    {
-        get => _window!.Size.X;
-        set => _window!.Size = new Vector2u(value, height);
-    }
-    
-    public static uint height
-    {
-        get => _window!.Size.X;
-        set => _window!.Size = new Vector2u(width, value);
-    }
-    
-    public static Vector2 size
-    {
-        get => _window!.Size;
-        set => _window!.Size = value;
-    }
-
-    public static string title
-    {
-        get => _title;
-        set
-        {
-            _title = value;
-            _window!.SetTitle(value);
-        }
-    }
-
-    public static EventPublisher start { get; set; } =  new EventPublisher();
-    
-    public static EventPublisher update { get; set; } =  new EventPublisher();
-
-    public static Entity[] entities => _entities.ToArray();
-    
     #endregion
 
     
@@ -109,14 +70,14 @@ public class Game
         // window.Draw();
     }
 
-    public static void Add(Entity entity)
+    public static void Add(GameObject gameObject)
     {
-        _entities.Add(entity);
+        _entities.Add(gameObject);
     }
 
-    public static void Remove(Entity entity)
+    public static void Remove(GameObject gameObject)
     {
-        _entities.Remove(entity);
+        _entities.Remove(gameObject);
     }
     public static void Run()
     {
@@ -157,5 +118,43 @@ public class Game
 
     #endregion
 
+    
+    #region Props
+
+    public static uint width
+    {
+        get => _window!.Size.X;
+        set => _window!.Size = new Vector2u(value, height);
+    }
+    
+    public static uint height
+    {
+        get => _window!.Size.X;
+        set => _window!.Size = new Vector2u(width, value);
+    }
+    
+    public static Vector2 size
+    {
+        get => _window!.Size;
+        set => _window!.Size = value;
+    }
+
+    public static string title
+    {
+        get => _title;
+        set
+        {
+            _title = value;
+            _window!.SetTitle(value);
+        }
+    }
+
+    public static EventPublisher start { get; set; } =  new EventPublisher();
+    
+    public static EventPublisher update { get; set; } =  new EventPublisher();
+
+    public static GameObject[] entities => _entities.ToArray();
+    
+    #endregion
     
 }

@@ -2,6 +2,7 @@
 
 namespace GameEngineDemo2.Core.Lua;
 
+[MoonSharpUserData]
 public class Wait
 {
     public static DynValue Execute(double t)

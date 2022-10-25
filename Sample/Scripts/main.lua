@@ -4,7 +4,9 @@
     end
 }
 
-print(wait(2))
+print("Hello World")
+print("3 초 뒤 실행")
+
 
 --[[ Point Struct ]]
 local a, b = point(1,1), point(2,2)
@@ -24,3 +26,9 @@ print(color.black[1])
 
 print(typeof(point))
 print(typeof(a))
+
+print(deltaTime)
+
+print(entity)
+local monster = entity()
+print(#window.entities)

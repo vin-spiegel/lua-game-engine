@@ -6,14 +6,15 @@ using SFML.Window;
 // ReSharper disable All
 #pragma warning disable CS8618
 
-namespace GameEngineDemo2.Core.Graphics;
+namespace GameEngineDemo2.Core;
 
 [MoonSharpUserData]
 public class Window 
 {
     private static RenderWindow? _window;
     private static string _title = "My Game";
-
+    private static HashSet<Entity> _entities = new HashSet<Entity>();
+    
     #region Ctor
 
     public static void Init(uint width, uint height, string title)
@@ -113,6 +114,38 @@ public class Window
         // window.Draw();
     }
 
-    #endregion
+    public static void Add(Entity entity)
+    {
+        _entities.Add(entity);
+    }
+
+    public static void Remove(Entity entity)
+    {
+        _entities.Remove(entity);
+    }
+    public static void Run()
+    {
+        var clock = new Clock();
+        while (Window.IsOpen)
+        {
+            // update
+            var dt = clock.Restart().AsSeconds();
+            Window.update?.Call(dt);
+
+            // LuaScript.script.Globals["deltaTime"] = dt;
     
+            // handle events
+            Window.HandleEvents();
+            Window.Clear();
+    
+            // draw
+    
+            // display
+            Window.Display();
+        }
+    }
+
+    #endregion
+
+    public static Entity[] entities => _entities.ToArray();
 }

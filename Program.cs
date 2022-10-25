@@ -1,6 +1,6 @@
 ﻿using GameEngineDemo2.Core;
 using SFML.System;
-using Window = GameEngineDemo2.Core.Graphics.Window;
+// using Window = GameEngineDemo2.Core.Graphics;
 
 // if (args.Length == 0)
 //     return;
@@ -12,22 +12,6 @@ LuaScript.Init();
 
 Window.load?.Call();
 
-Window.Init(100,100,"Test Game");
+Window.Init(200,100,"Test Game");
 
-var clock = new Clock();
-
-while (Window.IsOpen)
-{
-    // update
-    var dt = clock.Restart().AsSeconds();
-    Window.update?.Call(dt);
-    
-    // handle events
-    Window.HandleEvents();
-    Window.Clear();
-    
-    // draw
-    
-    // display
-    Window.Display();
-}
+Window.Run();

@@ -21,16 +21,6 @@ public static class LuaScript
             Wait.Execute
         );
 
-        // conversion hash set to table
-        // Script.GlobalOptions.CustomConverters.SetClrToScriptCustomConversion<HashSet<Entity>>(set =>
-        // {
-        //     var t = new Table(script);
-        //     foreach (var entity in set)
-        //     {
-        //     }
-        //     return DynValue.NewTable(t);
-        // });
-        
         // set require loader
         ((ScriptLoaderBase)script.Options.ScriptLoader).ModulePaths = new string[]
         {
@@ -51,17 +41,18 @@ public static class LuaScript
     private static void Registration()
     {
         // register assembly
-        UserData.RegisterAssembly(typeof(Window).Assembly);
+        UserData.RegisterAssembly(typeof(Game).Assembly);
         
         // lua global functions
         script.Globals["wait"] = (Func<double, DynValue>)Globals.Wait;
         script.Globals["typeof"] = (Func<object, string?>)Globals.Typeof;
         
-        // core game
+        // game core
         script.Globals["entity"] = typeof(Entity);
+        script.Globals["time"] = typeof(Time);
         
         // graphics
-        script.Globals["window"] = typeof(Window);
+        script.Globals["window"] = typeof(Game);
         script.Globals["point"] = typeof(Vector);
         script.Globals["rect"] = typeof(Rect);
         script.Globals["color"] = typeof(Color);

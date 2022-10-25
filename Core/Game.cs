@@ -9,7 +9,7 @@ using SFML.Window;
 namespace GameEngineDemo2.Core;
 
 [MoonSharpUserData]
-public class Window 
+public class Game 
 {
     private static RenderWindow? _window;
     private static string _title = "My Game";
@@ -26,14 +26,6 @@ public class Window
         };
         _window.SetVerticalSyncEnabled(true);
     }
-
-    #endregion
-    
-    
-    #region Cycle
-    
-    public static Closure load { get; set; }
-    public static Closure update { get; set; }
 
     #endregion
 
@@ -68,22 +60,40 @@ public class Window
         }
     }
 
+    public static EventPublisher start { get; set; } =  new EventPublisher();
+    
+    public static EventPublisher update { get; set; } =  new EventPublisher();
+
+    public static Entity[] entities => _entities.ToArray();
+    
     #endregion
 
-
-    #region Hidden Props
-
-    [MoonSharpHidden]
-    public static bool IsClosed => _window is { IsOpen: true };
-
-    [MoonSharpHidden]
-    public static bool IsOpen => _window is { IsOpen: true };
-
+    
+    #region Cycle
+    
+    private static void Start()
+    {
+        foreach (var entity in _entities)
+        {
+            start.call();
+            entity.start.call();
+        }
+    }
+    
+    private static void Update(double dt)
+    {
+        foreach (var entity in _entities)
+        {
+            update.call(dt);
+            entity.update.call(dt);
+        }
+    }
+    
     #endregion
 
-
+    
     #region Methods
-
+    
     public static void close()
     {
         _window?.Close();
@@ -92,21 +102,6 @@ public class Window
     public static void SetFrameLimit(uint fps)
     {
         _window?.SetFramerateLimit(fps);
-    }
-
-    public static void Display()
-    {
-        _window?.Display();
-    }
-
-    public static void HandleEvents()
-    {
-        _window?.DispatchEvents();
-    }
-    
-    public static void Clear()
-    {
-        _window?.Clear();
     }
 
     public static void Draw() 
@@ -126,26 +121,41 @@ public class Window
     public static void Run()
     {
         var clock = new Clock();
-        while (Window.IsOpen)
+        Start();
+        
+        while (_window != null && _window.IsOpen)
         {
             // update
             var dt = clock.Restart().AsSeconds();
-            Window.update?.Call(dt);
+            Update(dt);
 
-            // LuaScript.script.Globals["deltaTime"] = dt;
-    
             // handle events
-            Window.HandleEvents();
-            Window.Clear();
+            Game.HandleEvents();
+            Game.Clear();
     
             // draw
     
             // display
-            Window.Display();
+            Game.Display();
         }
+    }
+    
+    private static void Display()
+    {
+        _window?.Display();
+    }
+
+    private static void HandleEvents()
+    {
+        _window?.DispatchEvents();
+    }
+    
+    private static void Clear()
+    {
+        _window?.Clear();
     }
 
     #endregion
 
-    public static Entity[] entities => _entities.ToArray();
+    
 }

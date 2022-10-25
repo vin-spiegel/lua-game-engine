@@ -1,5 +1,6 @@
 // ReSharper disable ClassNeverInstantiated.Global
 using MoonSharp.Interpreter;
+// ReSharper disable All
 
 namespace GameEngineDemo2.Core;
 
@@ -10,17 +11,22 @@ namespace GameEngineDemo2.Core;
 [MoonSharpUserData]
 public class Entity
 {
-    public string test = "Test Entity";
-
     private Entity()
     {
-        Window.Add(this);
+        Game.Add(this);
     }
     
-    /// <exclude/>
     [MoonSharpUserDataMetamethod("__call")]
     public static Entity __call(object self)
     {
         return new Entity();
     }
+
+    #region Props
+
+    public EventPublisher start = new EventPublisher();
+    
+    public EventPublisher update = new EventPublisher();
+
+    #endregion
 }

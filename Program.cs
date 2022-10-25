@@ -1,6 +1,5 @@
 ﻿using GameEngineDemo2.Core;
 using SFML.System;
-// using Window = GameEngineDemo2.Core.Graphics;
 
 // if (args.Length == 0)
 //     return;
@@ -9,9 +8,6 @@ using SFML.System;
 
 LuaScript.Init();
 
+Game.Init(200,100,"Test Game");
 
-Window.load?.Call();
-
-Window.Init(200,100,"Test Game");
-
-Window.Run();
+Game.Run();

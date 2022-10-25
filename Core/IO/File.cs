@@ -13,7 +13,7 @@ public static class File
 
     public static void WriteAllText(string text, string filename)
     {
-        var file = global::System.IO.File.CreateText(filename);
+        var file = global::System.IO.File.CreateText(Project.Root + filename);
         file.WriteLine(text);
         file.Close();
     }

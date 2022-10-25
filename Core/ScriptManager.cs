@@ -18,8 +18,8 @@ public static class LuaScript
     {
         SetCustomOptions();
         Registration();
-        
-        var res = script.LoadFile(Project.Root + "main.lua");
+
+        var res = script.LoadFile(Project.Root + "Scripts\\main.lua");
         res?.CallAsync();
     }
     
@@ -33,7 +33,7 @@ public static class LuaScript
         // set require loader
         ((ScriptLoaderBase)script.Options.ScriptLoader).ModulePaths = new[]
         {
-            Project.Root + "?.lua"
+            Project.Root + "Scripts\\?.lua"
         };
     }
 

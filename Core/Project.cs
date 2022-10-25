@@ -5,5 +5,7 @@
 /// </summary>
 public static class Project
 {
-    public static string? Root { get; set; } = Path.GetFullPath(@"..\..\..\Sample\Scripts\");
+    public static string? Root { get; set; } = Path.GetFullPath(@"..\..\..\Sample\");
+    
+    
 }

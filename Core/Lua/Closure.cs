@@ -21,9 +21,9 @@ public static class ClosureExtensions
             }
             return result;
         }
-        catch (InterpreterException ex)
+        catch (Exception ex)
         {
-            Console.WriteLine(ex.DecoratedMessage);
+            Console.WriteLine(ex);
             throw;
         }
     }

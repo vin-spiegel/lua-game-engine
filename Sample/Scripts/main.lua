@@ -4,13 +4,13 @@
     end
 }
 
+require("mod1")
+
 print("Hello World")
 print("3 초 뒤 실행")
 
-
-
 --[[ Point Struct ]]
-local a, b = point(1,1), point(2,2)
+local a, b = vector2(1,1), vector2(2,2)
 debug.print(a + b)
 debug.print(a - b)
 debug.print(a * b)
@@ -25,36 +25,10 @@ print(color.black.b)
 print(color.black.a)
 print(color.black[1])
 
-print(typeof(point))
-print(typeof(a))
+local monster = gameObject()
 
-print(deltaTime)
-
-print(entity)
-
-
-local monster = entity()
-
-local s = 0
-local t = 0
-
-monster.update.add(function(dt)
-    s = s + dt
-    t = t + time.deltaTime
-    
-    if (s > 2) then
-        print(s, t)
-        s = 0
-        t = 0
-    end
+monster.start.add(function()
+    print("Hello, World")
 end)
 
---local t = 0
---while(true) do
---    t = t + time.deltaTime
---
---    if (t > 2) then
---        t = 0
---        print("2초 경과")
---    end
---end 
+game.save()

@@ -1,4 +1,5 @@
-﻿using GameEngineDemo2.Core.System;
+﻿using GameEngineDemo2.Core.Serialization;
+using GameEngineDemo2.Core.System;
 using MoonSharp.Interpreter;
 using SFML.Graphics;
 using SFML.System;
@@ -114,6 +115,15 @@ public class Game
     private static void Clear()
     {
         _window?.Clear();
+    }
+
+    public static void save()
+    {
+        foreach (var gameObject in _entities)
+        {
+            var jsonString = Converter.Serialize(gameObject);
+            IO.File.WriteAllText(jsonString, gameObject.name + ".json");
+        }
     }
 
     #endregion

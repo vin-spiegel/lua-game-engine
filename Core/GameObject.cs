@@ -1,6 +1,4 @@
 // ReSharper disable ClassNeverInstantiated.Global
-
-using GameEngineDemo2.Core.System;
 using MoonSharp.Interpreter;
 // ReSharper disable All
 #pragma warning disable CS0649
@@ -41,7 +39,7 @@ public class GameObject
     
     public EventPublisher update = new EventPublisher();
 
-    public string tag { get; set; }
+    public string tag { get; set; } = "test1";
     
     public string name { get; set; }
 

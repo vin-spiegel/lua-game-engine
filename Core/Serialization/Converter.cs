@@ -1,10 +1,12 @@
-﻿using Newtonsoft.Json;
+﻿using MoonSharp.Interpreter;
+using MoonSharp.Interpreter.Serialization;
+using Newtonsoft.Json;
 
 namespace GameEngineDemo2.Core.Serialization;
 
 public static class Converter
 {
-    public static T? Deserialize<T>(string filename)
+    public static T? JsonDeserialize<T>(string filename)
     {
         return JsonConvert.DeserializeObject<T>(File.ReadAllText(filename), new JsonSerializerSettings()
         {
@@ -12,8 +14,13 @@ public static class Converter
         });
     }
     
-    public static string Serialize(object obj)
+    public static string JsonSerialize(object obj)
     {
         return JsonConvert.SerializeObject(obj, Formatting.Indented);
+    }
+
+    public static DynValue DynValueSerialize(object obj)
+    {
+        return ObjectValueConverter.SerializeObjectToDynValue(LuaScript.script, obj);
     }
 }

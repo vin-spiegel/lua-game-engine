@@ -121,7 +121,7 @@ public class Game
     {
         foreach (var gameObject in _entities)
         {
-            var jsonString = Converter.Serialize(gameObject);
+            var jsonString = Converter.JsonSerialize(gameObject);
             IO.File.WriteAllText(jsonString, gameObject.name + ".json");
         }
     }

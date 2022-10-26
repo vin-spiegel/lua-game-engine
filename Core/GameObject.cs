@@ -1,4 +1,6 @@
 // ReSharper disable ClassNeverInstantiated.Global
+
+using GameEngineDemo2.Core.Serialization;
 using MoonSharp.Interpreter;
 // ReSharper disable All
 #pragma warning disable CS0649
@@ -31,6 +33,16 @@ public class GameObject
     public static GameObject __call(object self)
     {
         return new GameObject();
+    }
+    
+    [MoonSharpUserDataMetamethod("__pairs")]
+    public static DynValue __pairs(object self)
+    {
+        var table = Converter.DynValueSerialize(self);
+
+        var next = Utility.GetGlobal("next") as CallbackFunction;
+
+        return DynValue.NewTuple(DynValue.NewCallback(next), table);
     }
 
     #region Props

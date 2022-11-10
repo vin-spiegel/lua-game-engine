@@ -2,7 +2,7 @@
 Simple lua game engine
 
 # Preview
-- Inspired from [event-driven-programming](https://en.wikipedia.org/wiki/Event-driven_programming) to make game easier
+- Inspired from entity style programming
 
   ```lua
   local monster = gameObject()

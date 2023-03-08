@@ -1,4 +1,5 @@
 ﻿using MoonSharp.Interpreter;
+// ReSharper disable ClassNeverInstantiated.Global
 
 namespace GameEngineDemo2.Core.Lua;
 
@@ -11,7 +12,7 @@ public class Wait
     }
     
     [MoonSharpHidden]
-    public static DynValue Execute(Task<DynValue> task)
+    public static DynValue Execute(global::System.Threading.Tasks.Task<DynValue> task)
     {
         return DynValue.NewYieldReq(new[]
         {
@@ -21,7 +22,7 @@ public class Wait
 
     private static DynValue Execute(global::System.Threading.Tasks.Task task)
     {
-        async Task<DynValue> WaitTask()
+        async global::System.Threading.Tasks.Task<DynValue> WaitTask()
         {
             await task;
             return DynValue.Void;

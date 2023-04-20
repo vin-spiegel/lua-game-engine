@@ -6,8 +6,6 @@ Simple lua game engine
 - [MoonSharp](https://github.com/moonsharp-devs/moonsharp)
 
 # Preview
-- Inspired from [Entity Component System](https://en.wikipedia.org/wiki/Entity_component_system)
-
   ```lua
   local monster = gameObject()
   monster.start.add(function()
@@ -30,7 +28,7 @@ Simple lua game engine
   ```
   
 # Document
-  comming soon...
+  comming soon
   
 # License
 MIT by [vin-spiegel](https://github.com/vin-spiegel)

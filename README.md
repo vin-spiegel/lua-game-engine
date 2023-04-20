@@ -1,9 +1,5 @@
 # lua-game-engine
-Simple lua game engine
-
-# Dependency
-- [SFML.Net](https://github.com/SFML/SFML.Net)
-- [MoonSharp](https://github.com/moonsharp-devs/moonsharp)
+Simple lua game engine using [SFML.Net](https://github.com/SFML/SFML.Net), [MoonSharp](https://github.com/moonsharp-devs/moonsharp)
 
 # Preview
   ```lua

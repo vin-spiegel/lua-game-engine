@@ -16,7 +16,7 @@ Simple lua game engine
     -- do something ..
   end)
   ```
-- Fully support [Lua5.4](https://www.lua.org/about.html) modules
+- Support [Lua5.4](https://www.lua.org/about.html) modules
 
 - Easy grammer with lua
   ```lua
